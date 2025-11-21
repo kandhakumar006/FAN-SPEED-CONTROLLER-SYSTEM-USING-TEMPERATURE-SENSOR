@@ -1,24 +1,22 @@
-
-# FAN-SPEED-CONTROLLER-SYSTEM-USING-TEMPERATURE-SENSOR
 # EXP 1(A) FAN SPEED CONTROLLER SYSTEM USING TEMPERATURE SENSOR
 
 # Aim:
+```
 	To measure the Temperature using DHT11/DHT22/TMP36  sensor with Arduino UNO Board/ESP-32 using Tinker CAD.
+```
 
 # Hardware / Software Tools required:
+```
 	PC/ Laptop with Internet connection
     Tinker CAD tool (Online)
 	Arduino UNO Board/ESP-32
 	Temperature Sensor (DHT11/DHT22/TMP36)
+```
 
 # Circuit Diagram:
+<img width="1361" height="739" alt="image" src="https://github.com/user-attachments/assets/c3c73531-e733-4f02-8957-238e161e192a" />
 
----
-To upload
---
-
-# Procedure // Modify the procedure based on your circuit
-
+# Procedure 
 Step 1: Set Up the Tinkercad Environment
 1.	Log in to Tinkercad: Open Tinkercad in your web browser and log in to your account.
 2.	Create a New Circuit: In the Tinkercad dashboard, click on "Circuits" and then select "Create New Circuit."
@@ -57,12 +55,103 @@ Step 7: Save Your Work
 
 # Program
 
----
-To upload
---
+```
+#include <LiquidCrystal.h>
+LiquidCrystal lcd(9,8,7,6,5,4);
+float temp; 
+int tempPin= A0;
+#define fan 3
+void setup()
+{ lcd.begin(16,2); 
+ pinMode(fan,OUTPUT);
+/*lcd.setCursor(0,0);
+lcd.print("Hello friends!!");
+ delay(1000);
+lcd.clear();
+ lcd.setCursor(2,0);
+lcd.print("Our First ");
+ delay(1000);
 
+ lcd.setCursor(2,1);
+lcd.print("ELC Project!!");
+ delay(2000);
+lcd.clear();
+ lcd.setCursor(0,0); 
+ lcd.print("Temperature Based"); 
+ delay(1000); 
+  
+ lcd.setCursor(0,1); 
+ lcd.print("FanSpeed Control");
+ delay(2000); 
+ lcd.clear();
+ lcd.setCursor(2,0); 
+ lcd.print("Group");
+ delay(1000); 
+ 
+ lcd.setCursor(2,1); 
+ lcd.print("Memebers:");
+ delay(2000); 
+ lcd.clear();
+ lcd.setCursor(0,0); 
+ lcd.print("Ruthwik Sai");
+ delay(1000); 
+
+ lcd.setCursor(0,1); 
+ lcd.print("Mukthesh");
+ delay(2000); 
+ lcd.clear();*/
+} 
+void loop()
+{ lcd.setCursor(3,0);
+ lcd.print("Recording"); 
+ lcd.setCursor(2,1); 
+ lcd.print("Temperature"); 
+ delay(3000);
+lcd.clear(); 
+ lcd.setCursor(0,2); 
+ temp = analogRead (tempPin); 
+ temp = (0.0048828125)*temp; 
+temp = (temp - 0.5) * 100 ;
+ lcd.setCursor(1,0); 
+ lcd.print("Temprature in");
+ lcd.setCursor(1,1); 
+ lcd.print("Celsius=");
+ lcd.setCursor(9,1); 
+ lcd.print(temp); 
+ delay(3000); 
+ lcd.clear();
+if (temp<20)
+{ analogWrite(fan,0);
+lcd.print("Fan off"); delay(2000);
+lcd.clear();
+}
+if (temp>20 && temp<=40)
+{ analogWrite(fan,50);
+lcd.print("Fan speed : 20% "); delay(2000);
+lcd.clear();
+} if (temp>40 && temp<=60)
+{ analogWrite(fan,100);
+lcd.print("Fan speed : 40% "); delay(2000);
+lcd.clear();
+} if (temp>60 && temp<=70)
+{ analogWrite(fan,150);
+lcd.print("Fan speed : 60% "); delay(2000);
+lcd.clear();
+} if (temp>70 && temp<=80)
+{ analogWrite(fan,200);
+lcd.print("Fan speed : 80% "); delay(2000);
+lcd.clear();
+} if (temp>80)
+{ analogWrite(fan,255);
+lcd.print("Fan speed : 100% "); delay(2000);
+lcd.clear();
+}
+}
+
+```
+# Output :
+
+
+https://github.com/user-attachments/assets/9d9011a1-4fc4-4989-9f7b-5fdd1a173b9a
 # Result
-
----
-To upload
---
+FAN SPEED CONTROLLER SYSTEM USING TEMPERATURE SENSOR USING TINKERCAD EXECUTED SUCCESSFULLY.
